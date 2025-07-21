@@ -14,6 +14,7 @@ public class UserDto {
         this.user_id = user_id;
         this.user_pw = user_pw;
     }
+
     @NotNull
     @Size(min = 2, max = 10)
     private String nickname;

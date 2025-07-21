@@ -30,7 +30,7 @@ public class UserController {
      */
     @PostMapping("user/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginDto loginDto, BindingResult bindingResult) {
-        log.info("로그인 실행");
+        //log.info("로그인 실행 userDto : {}", loginDto.getUser_id());
         if (bindingResult.hasErrors()) {
             List<String> errors = bindingResult.getFieldErrors().stream()
                     .map(x -> x.getDefaultMessage())
@@ -41,10 +41,12 @@ public class UserController {
 
         try {
             User user = userService.selectUser(loginDto.getUser_id(), loginDto.getUser_pw());
+            log.info("user 찾기 성공: {}", user.getNickname());
             UserDto userDto = new UserDto(user.getNickname(), user.getUser_id(),  user.getUser_pw());
-            log.info("user : {}", userDto);
+
             return ResponseEntity.status(HttpStatus.OK).body(userDto);
         } catch (Exception e) {
+            log.info(e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }

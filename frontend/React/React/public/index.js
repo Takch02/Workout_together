@@ -144,14 +144,16 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         try {
-            const response = await fetch('http://localhost:3000/api/login', {
+            const response = await fetch('http://localhost:8080/user/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ user_id, user_pw })
             });
             const data = await response.json();
+            console.log('응답 상태:', response.status, 'OK:', response.ok);
+            console.log('응답 헤더:', response.headers.get('content-type'));
             // 백엔드에서 정보를 줌
-            if (data.success) {
+            if (response.ok) {
                 authScreen.style.display = 'none';
                 mainScreen.style.display = 'block';
             } else {
@@ -173,14 +175,16 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         try {
-            const response = await fetch('http://localhost:3000/api/signup', {
+            const response = await fetch('http://localhost:8080/user/join', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ user_id, user_pw, nickname })
             });
             const data = await response.json();
+            console.log('응답 상태:', response.status, 'OK:', response.ok);
+            console.log('응답 헤더:', response.headers.get('content-type'));
             // 백엔드에서 정보를 줌
-            if (data.success) {
+            if (response.ok) {  //
                 alert('회원가입 성공! 로그인 화면으로 이동합니다.');
                 signupModal.style.display = 'none';
                 overlay.style.display = 'none';
