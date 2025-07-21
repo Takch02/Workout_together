@@ -17,6 +17,9 @@
       <module name="Protin-Calculator-Project.backend" options="-parameters" />
       <module name="Protin-Calculator-Project.backend.main" options="-parameters" />
       <module name="Protin-Calculator-Project.backend.test" options="-parameters" />
+      <module name="protin_cal" options="-parameters" />
+      <module name="protin_cal.main" options="-parameters" />
+      <module name="protin_cal.test" options="-parameters" />
     </option>
   </component>
 </project>

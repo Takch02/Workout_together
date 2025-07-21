@@ -1,13 +1,12 @@
-spring :
-  application :
-    name : protin_cal
-
+spring:
+  application:
+    name: protin_cal
   datasource:
-    url: jdbc:mysql://localhost:3306/protin
+    url: jdbc:mysql://localhost:3306/workout?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
     username: root
     password: tagtag1010
     driver-class-name: com.mysql.cj.jdbc.Driver
-    jpa:
-      hibernate:
-        ddl-auto: update
+  jpa:
+    hibernate:
+      ddl-auto: update
       show-sql: true
