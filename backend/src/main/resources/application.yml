@@ -2,11 +2,11 @@ spring:
   application:
     name: protin_cal
   datasource:
-    url: jdbc:mysql://localhost:3306/workout?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/workout?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=Asia/Seoul
     username: root
     password: tagtag1010
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       show-sql: true

@@ -1,8 +1,10 @@
 package mini_project.protin_cal.controller.userController;
 
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import mini_project.protin_cal.aop.LoginCheck;
 import mini_project.protin_cal.domain.User;
 import mini_project.protin_cal.dto.user.LoginDto;
 import mini_project.protin_cal.dto.user.UserDto;
@@ -20,7 +22,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-public class UserController {
+public class LoginController {
 
     @Autowired
     private UserService userService;
@@ -29,7 +31,7 @@ public class UserController {
      * 로그인 로직. Valid에 걸리면 error를 보냄. 저장 완료되면 userDto 객체를 보냄. (id는 보내지 않음)
      */
     @PostMapping("user/login")
-    public ResponseEntity<?> login(@Valid @RequestBody LoginDto loginDto, BindingResult bindingResult) {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginDto loginDto, BindingResult bindingResult, HttpSession session) {
         //log.info("로그인 실행 userDto : {}", loginDto.getUser_id());
         if (bindingResult.hasErrors()) {
             List<String> errors = bindingResult.getFieldErrors().stream()
@@ -43,6 +45,10 @@ public class UserController {
             User user = userService.selectUser(loginDto.getUser_id(), loginDto.getUser_pw());
             log.info("user 찾기 성공: {}", user.getNickname());
             UserDto userDto = new UserDto(user.getNickname(), user.getUser_id(),  user.getUser_pw());
+            // 세션에 정보 넣기
+            session.setAttribute("user_id", userDto.getUser_id());
+            session.setAttribute("nickname", userDto.getNickname());
+            log.info("로그인 후 세션 : {}", session.getAttribute("user_id"));
 
             return ResponseEntity.status(HttpStatus.OK).body(userDto);
         } catch (Exception e) {
