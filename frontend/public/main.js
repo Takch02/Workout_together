@@ -49,6 +49,8 @@ timerButton.addEventListener('click', () => {
     }
 });
 
+const menuData = [];
+
 // 메뉴 항목 동적 생성
 const menuItemsContainer = document.getElementById('menu-items');
 menuData.forEach((item, index) => {

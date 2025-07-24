@@ -13,7 +13,7 @@ app.use(express.static('public'));
 
 // 루트 경로: login.html 제공
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/js/html/login.html');
+    res.sendFile(__dirname + '/public/html/login.html');
 });
 
 
@@ -25,16 +25,14 @@ app.get('/main', async (req, res) => {
                     Cookie: req.headers.cookie // 쿠키 직접 전달
                 }
         });
-
         if (response.status === 200) {
-            res.sendFile(__dirname + '/public/js/html/main.html');
+            res.sendFile(__dirname + '/public/html/main.html');
         } else {
             res.redirect('/');
         }
     } catch (error) {
         res.redirect('/');
     }
-
 });
 
 
