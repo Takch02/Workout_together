@@ -21,6 +21,9 @@ public class UserService {
         return userRepository.selectUser(user_id, user_pw);
     }
 
+    public User selectByNickname (String nickname) {
+        return userRepository.selectUserByNickname(nickname);
+    }
     public void modifyUser(User user) {
         userRepository.save(user);
     }

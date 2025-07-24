@@ -13,11 +13,12 @@ public class SessionInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         HttpSession session = request.getSession(false);  // 세션을 새로 만들지 않음.
-        log.info("nickname = {}",  session);
-        if (session == null || session.getAttribute("user_id") == null) {
-            response.sendRedirect("http://localhost:3000/");
+        log.info("url : {}", request.getRequestURI());
+        if (session == null || session.getAttribute("nickname") == null) {
+            response.setStatus(401);
             return false;
         }
+        log.info("session : {}", session.getAttribute("nickname"));
         return true;
     }
 }
