@@ -1,9 +1,3 @@
-// JSON 데이터: 메뉴 항목 정의
-const menuData = [
-    { id: 1, title: "임시 목록 1" },
-    { id: 2, title: "임시 목록 2" }
-];
-
 // 페이지 로드 시 실행
 document.addEventListener('DOMContentLoaded', () => {
     // 요소 가져오기
@@ -58,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({ user_id, user_pw }),
                 credentials: 'include' // 인증 정보(쿠키)를 포함하여 요청
             });
-            const data = await response.json();
+
             console.log('응답 상태:', response.status, 'OK:', response.ok);
             console.log('응답 헤더:', response.headers.get('content-type'));
             // 백엔드에서 정보를 줌
@@ -91,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({ user_id, user_pw, nickname }),
                 credentials: 'include' // 인증 정보(쿠_키)를 포함하여 요청
             });
-            const data = await response.json();
+
             console.log('응답 상태:', response.status, 'OK:', response.ok);
             console.log('응답 헤더:', response.headers.get('content-type'));
             // 백엔드에서 정보를 줌
