@@ -7,8 +7,14 @@ const port = 3000;
 
 // JSON 파싱 및 정적 파일 제공 설정
 app.use(express.json());
-app.use(cors());
 app.use(express.static('public'));
+
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['*'],
+    credentials: true
+}));
 
 const authMiddleWare = async (req, res, next) => {
     if (req.path === '/') {
@@ -46,7 +52,6 @@ app.get('/', (req, res) => {
  * 앞으로 'html/ '안에 html 추가할 것
  */
 app.get('/:page', authMiddleWare, (req, res) => {
-    console.log(":page 실행됨");
     const page = req.params.page; // 예: dashboard, user, profile
     const filePath = path.join(__dirname, `public/html/${page}.html`);
 

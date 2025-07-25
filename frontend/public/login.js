@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingScreen = document.getElementById('loading-screen');
     const authScreen = document.getElementById('auth-screen');
     
-    const overlay = document.getElementById('overlay');
+
     const signupModal = document.getElementById('signup-modal');
     const loginButton = document.getElementById('login-button');
     const signupLink = document.getElementById('signup-link');
@@ -53,11 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 credentials: 'include' // 인증 정보(쿠키)를 포함하여 요청
             });
 
-            console.log('응답 상태:', response.status, 'OK:', response.ok);
-            console.log('응답 헤더:', response.headers.get('content-type'));
             // 백엔드에서 정보를 줌
             if (response.ok) {
-
+                console.log(`응답 상태: ${response.status}`);
+                console.log(`응답 헤더: ${response.headers.get('content-type')}`);
                 window.location.href = '/main';
 
             } else {
@@ -92,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {  //
                 alert('회원가입 성공! 로그인 화면으로 이동합니다.');
                 signupModal.style.display = 'none';
-                overlay.style.display = 'none';
                 signupIdInput.value = '';
                 signupPwInput.value = '';
                 signupNicknameInput.value = '';
@@ -101,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) {
             console.error('회원가입 오류:', error);
-            alert('서버 오류가 발생했습니다.');
+            alert(error);
         }
     });
 });

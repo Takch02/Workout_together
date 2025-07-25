@@ -2,8 +2,8 @@ spring:
   application:
     name: protin_cal
   datasource:
-    url: jdbc:mysql://localhost:3306/workout?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=Asia/Seoul
-    username: root
+    url: jdbc:mysql://test-db.cvymy48u495a.ap-northeast-2.rds.amazonaws.com/workout?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=Asia/Seoul
+    username: takch02
     password: tagtag1010
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
