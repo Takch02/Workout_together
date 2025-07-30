@@ -27,6 +27,7 @@ public class UserService {
     public void modifyUser(User user) {
         userRepository.save(user);
     }
+
     public List<User> findAll() {     // 모든 유저 탐색
         return userRepository.findAll();
     }
