@@ -18,7 +18,7 @@ cp ./backend/build/libs/*.jar $REPOSITORY/
 
 echo "> 현재 구동중인 애플리케이션 pid 확인 "
 
-CURRENT_PID=$(pgrep -f Protin-Calculator-Project)
+CURRENT_PID=$(pgrep -f backend)
 
 echo "$CURRENT_PID"
 
@@ -32,7 +32,7 @@ fi
 
 echo "> 새 어플리케이션 배포"
 
-JAR_NAME=$(ls $REPOSITORY/ |grep 'Protin-Calculator-Project' | tail -n 1)
+JAR_NAME=$(ls $REPOSITORY/ |grep 'backend' | tail -n 1)
 
 echo "> JAR Name: $JAR_NAME"
 
