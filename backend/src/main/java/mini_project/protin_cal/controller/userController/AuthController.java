@@ -23,6 +23,7 @@ public class AuthController {
     }
     @RequestMapping(value = "/user/login", method = RequestMethod.OPTIONS)
     public ResponseEntity<?> handleOptions() {
+        log.info("options 요청이 들어옴");
         return ResponseEntity.ok().build();
     }
 
