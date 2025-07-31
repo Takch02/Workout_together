@@ -4,8 +4,8 @@ server:
       cookie:
         same-site: none
         secure: true
-        attributes:
-        - Partitioned
+        partitioned: true
+
 spring:
   application:
     name: protin_cal
