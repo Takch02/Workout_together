@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
     private final static String LOCAL_URL = "http://localhost:3000";
-    private final static String SERVER_URL = "http://ec2-15-165-16-46.ap-northeast-2.compute.amazonaws.com:8080";
+    private final static String SERVER_URL = "http://ec2-15-165-16-46.ap-northeast-2.compute.amazonaws.com:3000";
     /**
      * CORS 설정
      */
