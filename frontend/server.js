@@ -5,6 +5,9 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
+const serverURL = "http://ec2-15-165-16-46.ap-northeast-2.compute.amazonaws.com:8080";
+const testURL = "http://localhost:8080";
+
 // JSON 파싱 및 정적 파일 제공 설정
 app.use(express.json());
 app.use(express.static('public'));
@@ -21,7 +24,7 @@ const authMiddleWare = async (req, res, next) => {
         return next();
     }
     try {
-        const response = await fetch(`http://localhost:8080${req.originalUrl}`,
+        const response = await fetch(`${serverURL}${req.originalUrl}`,
             {
                 method : 'GET',
                 credentials : 'include',
@@ -31,8 +34,10 @@ const authMiddleWare = async (req, res, next) => {
             });
         console.log(`status : ${response.url}`);
         if (response.status === 200) {
+            //console.log('response', response);
             next();
         } else {
+            console.log('response', response);
             res.redirect('/');
         }
     } catch (error) {

@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const signupIdInput = document.getElementById('signup-id');
     const signupPwInput = document.getElementById('signup-pw');
     const signupNicknameInput = document.getElementById('signup-nickname');
+    const serverURL = "http://ec2-15-165-16-46.ap-northeast-2.compute.amazonaws.com:8080";
+    const testURL = "http://localhost:8080";
 
 
     // 로딩 화면: 2초 후 로그인/회원가입 화면으로 전환
@@ -39,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 로그인 버튼: 백엔드에 데이터 전송
     loginButton.addEventListener('click', async () => {
+        console.log('로그인 버튼 클릭됨');
         const user_id = loginIdInput.value.trim();
         const user_pw = loginPwInput.value.trim();
         if (!user_id || !user_pw) {
@@ -46,19 +49,17 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         try {
-            const response = await fetch('http://localhost:8080/user/login', {
+            const response = await fetch(`${serverURL}/user/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ user_id, user_pw }),
                 credentials: 'include' // 인증 정보(쿠키)를 포함하여 요청
             });
-
+            console.log(`응답 상태: ${response.status}`);
+            console.log(`응답 헤더: ${response.headers.get('content-type')}`);
             // 백엔드에서 정보를 줌
             if (response.ok) {
-                console.log(`응답 상태: ${response.status}`);
-                console.log(`응답 헤더: ${response.headers.get('content-type')}`);
                 window.location.href = '/main';
-
             } else {
                 alert('로그인 실패');
             }
@@ -78,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         try {
-            const response = await fetch('http://localhost:8080/user/join', {
+            const response = await fetch(`${serverURL}/user/join`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ user_id, user_pw, nickname }),
