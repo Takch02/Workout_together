@@ -3,8 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 요소 가져오기
     const loadingScreen = document.getElementById('loading-screen');
     const authScreen = document.getElementById('auth-screen');
-    
-
     const signupModal = document.getElementById('signup-modal');
     const loginButton = document.getElementById('login-button');
     const signupLink = document.getElementById('signup-link');
@@ -14,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginPwInput = document.getElementById('login-pw');
     const signupIdInput = document.getElementById('signup-id');
     const signupPwInput = document.getElementById('signup-pw');
+
+
     const signupNicknameInput = document.getElementById('signup-nickname');
     const serverURL = "http://ec2-15-165-16-46.ap-northeast-2.compute.amazonaws.com:8080";
     const testURL = "http://localhost:8080";
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         try {
-            const response = await fetch(`${testURL}/user/login`, {
+            const response = await fetch(`${serverURL}/user/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ user_id, user_pw }),

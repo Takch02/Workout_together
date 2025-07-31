@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     try {
-        const response = await fetch(`${testURL}/main`, {
+        const response = await fetch(`${serverURL}/main`, {
             method: 'GET',
             credentials: 'include',
         });
