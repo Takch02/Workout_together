@@ -26,12 +26,13 @@ public class WebConfig implements WebMvcConfigurer {
 
     /**
      * Interceptor 설정 (Session 설정)
-     */
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new SessionInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/favicon.ico","/user/login", "/user/join", "/**/*.options");
+                .excludePathPatterns("/favicon.ico","/user/login", "/user/join");
     }
+    */
 
 }
