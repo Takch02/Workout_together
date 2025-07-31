@@ -31,7 +31,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new SessionInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/favicon.ico","/user/login", "/user/join");
+                .excludePathPatterns("/favicon.ico","/user/login", "/user/join", "/**/*.options");
     }
 
 }
