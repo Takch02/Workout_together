@@ -16,8 +16,8 @@ public class SessionInterceptor implements HandlerInterceptor {
         log.info("url : {}", request.getRequestURI());
         if (session == null || session.getAttribute("nickname") == null) {
             log.info("세션이 없음");
-            response.addHeader("error", "세션에 아무것도 읎어요");
-            response.setStatus(401);
+            response.addHeader("Message-ID", "세션에 아무것도 읎어요");
+            response.setStatus(402);
             return false;
         }
         log.info("session : {}", session.getAttribute("nickname"));
