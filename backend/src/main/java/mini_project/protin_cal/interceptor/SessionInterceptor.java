@@ -9,18 +9,20 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @Slf4j
 public class SessionInterceptor implements HandlerInterceptor {
 
+    // SessionInterceptor.java
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
-        HttpSession session = request.getSession(false);  // 세션을 새로 만들지 않음.
-        log.info("url : {}", request.getRequestURI());
-        if (session == null || session.getAttribute("nickname") == null) {
-            log.info("세션이 없음");
-            response.addHeader("Message-ID", "세션에 아무것도 읎어요");
-            response.setStatus(402);
-            return false;
+        if (request.getMethod().equalsIgnoreCase("OPTIONS")) {
+            return true;
         }
-        log.info("session : {}", session.getAttribute("nickname"));
-        return true;
+
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("user") != null) {
+            return true;
+        }
+
+        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+        return false;
     }
+
 }
