@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         try {
             const response = await fetch(`${serverURL}/user/login`, {
+
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ user_id, user_pw }),
@@ -66,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) {
             console.error('로그인 오류:', error);
-            alert('서버 오류가 발생했습니다.');
+            alert(error);
         }
     });
 
