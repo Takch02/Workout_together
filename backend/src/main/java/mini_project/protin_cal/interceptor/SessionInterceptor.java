@@ -12,15 +12,17 @@ public class SessionInterceptor implements HandlerInterceptor {
     // SessionInterceptor.java
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        log.info("Interceptor 작동 url : {}", request.getRequestURI());
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
             return true;
         }
         HttpSession session = request.getSession(false);
-        if (session != null && session.getAttribute("user") != null) {
+        if (session != null && session.getAttribute("nickname") != null) {
             return true;
         }
 
+        log.info("세션이 없어요");
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         return false;
     }

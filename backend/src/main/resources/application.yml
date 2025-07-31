@@ -3,8 +3,9 @@ server:
     session:
       cookie:
         same-site: none
-        secure: true
-        partitioned: true
+        secure: false # 로컬 개발을 위해 false로 변경
+        # partitioned: true # secure: true 일 때만 의미가 있으므로 주석 처리
+      timeout: 30m
 
 spring:
   application:
@@ -18,3 +19,7 @@ spring:
     hibernate:
       ddl-auto: update
       show-sql: true
+
+logging:
+  level:
+    root=INFO:

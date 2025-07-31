@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         try {
-            const response = await fetch(`${serverURL}/user/login`, {
+            const response = await fetch(`${testURL}/user/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ user_id, user_pw }),
@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             console.log(`응답 상태: ${response.status}`);
             console.log(`응답 헤더: ${response.headers.get('content-type')}`);
+            console.log("백엔드에서 로그인 성공을 알림");
             // 백엔드에서 정보를 줌
             if (response.ok) {
                 window.location.href = '/main';

@@ -1,7 +1,9 @@
 package mini_project.protin_cal.config;
 
+import lombok.extern.slf4j.Slf4j;
 import mini_project.protin_cal.interceptor.SessionInterceptor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -12,12 +14,12 @@ public class WebConfig implements WebMvcConfigurer {
     private final static String SERVER_URL = "http://ec2-15-165-16-46.ap-northeast-2.compute.amazonaws.com:3000";
     /**
      * CORS 설정
-     */
+    */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOriginPatterns(SERVER_URL, LOCAL_URL)
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
+                .allowedOrigins(SERVER_URL, LOCAL_URL)
+                .allowedMethods(HttpMethod.GET.name(),  HttpMethod.POST.name(), HttpMethod.OPTIONS.name())
                 .allowedHeaders("*")
                 .allowCredentials(true);
     }
@@ -29,7 +31,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new SessionInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/favicon.ico","/user/login", "/user/join", "/main");
+                .excludePathPatterns("/favicon.ico","/user/login", "/user/join");
     }
 
 }

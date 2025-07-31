@@ -1,3 +1,29 @@
+const testURL = 'http://localhost:8080';
+const serverURL = "http://ec2-15-165-16-46.ap-northeast-2.compute.amazonaws.com:8080";
+
+document.addEventListener('DOMContentLoaded', async () => {
+
+
+    try {
+        const response = await fetch(`${testURL}/main`, {
+            method: 'GET',
+            credentials: 'include',
+        });
+
+        if (!response.ok) {
+            // 서버가 401 Unauthorized 또는 다른 오류를 반환하면 로그인 페이지로 리디렉션
+            console.log('인증되지 않은 사용자, 로그인 페이지로 리디렉션합니다.');
+            window.location.href = '/'; // 로그인 페이지 URL
+        }
+        // 인증된 사용자라면 페이지의 나머지 스크립트를 계속 실행
+
+    } catch (error) {
+        console.error('인증 확인 중 오류 발생:', error);
+        // 네트워크 오류 등이 발생해도 로그인 페이지로 리디렉션
+        window.location.href = '/';
+    }
+});
+
 const menuButton = document.getElementById('menu-button');
 const profileButton = document.getElementById('profile-button');
 const settingsButton = document.getElementById('settings-button');
