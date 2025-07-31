@@ -18,7 +18,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins(SERVER_URL, LOCAL_URL)
+                .allowedOriginPatterns("*")
                 .allowedMethods(HttpMethod.GET.name(),  HttpMethod.POST.name(), HttpMethod.OPTIONS.name())
                 .allowedHeaders("*")
                 .allowCredentials(true);
@@ -26,13 +26,13 @@ public class WebConfig implements WebMvcConfigurer {
 
     /**
      * Interceptor 설정 (Session 설정)
-
+    */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new SessionInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns("/favicon.ico","/user/login", "/user/join");
     }
-    */
+
 
 }
