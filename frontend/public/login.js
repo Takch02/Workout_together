@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("백엔드에서 로그인 성공을 알림");
             // 백엔드에서 정보를 줌
             if (response.ok) {
-                //window.location.href = '/main';
+                window.location.href = '/main';
             } else {
                 alert('로그인 실패');
             }
