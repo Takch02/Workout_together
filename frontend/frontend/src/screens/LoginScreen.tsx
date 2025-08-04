@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthStackParamList } from '../types/navigation'; // 인증 스택 타입을 가져옵니다.
+import {API_URL, LOCAL_SERVER} from '../domain/config.js'
 
 // Props 타입을 AuthStackParamList에 맞게 수정합니다.
 type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
@@ -10,27 +11,21 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
   const [userId, setUserId] = useState(''); // email 대신 userId로 변경
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
+      console.log('백엔드로 요청 보냄')
     // TODO: 실제 백엔드 API에 로그인 요청을 보내야 합니다.
-    // const response = await fetch('https://your-backend.com/api/login', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ user_id: userId, user_pw: password }), // 백엔드 요구사항에 맞춰 필드명 변경
-    // });
-    // const data = await response.json();
-    // if (response.ok) {
-    //   // 로그인 성공 시 App.tsx의 isLoggedIn 상태를 true로 변경해야 합니다.
-    // } else {
-    //   Alert.alert('로그인 실패', data.message);
-    // }
-
-    // 현재는 임시로 성공 처리합니다.
-    if (userId === 'testuser' && password === 'password') { // 테스트용 아이디 변경
-      Alert.alert('로그인 성공', '메인 화면으로 이동합니다. (실제로는 상태 변경 필요)');
-      // App.tsx의 isLoggedIn 상태가 바뀌면 자동으로 메인 화면으로 전환됩니다.
-    } else {
-      Alert.alert('오류', '아이디 또는 비밀번호가 잘못되었습니다.'); // 메시지 변경
-    }
+     const response = await fetch(`${LOCAL_SERVER}/user/login`, {
+       method: 'POST',
+       headers: { 'Content-Type': 'application/json' },
+       body: JSON.stringify({ user_id: userId, user_pw: password }), // 백엔드 요구사항에 맞춰 필드명 변경
+     });
+     const data = await response.json();
+     if (response.ok) {
+       // 로그인 성공 시 App.tsx의 isLoggedIn 상태를 true로 변경해야 합니다.
+         console.log(response);
+     } else {
+       Alert.alert('로그인 실패', data.message);
+     }
   };
 
   return (
