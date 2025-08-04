@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@CrossOrigin(origins = "http://ec2-15-165-16-46.ap-northeast-2.compute.amazonaws.com:3000")
 public class LoginController {
 
     @Autowired
