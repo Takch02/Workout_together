@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthStackParamList } from '../types/navigation';
+import {API_URL, LOCAL_SERVER} from '../domain/config.js'
 
 // 네비게이션 props 타입을 정의합니다.
 type Props = NativeStackScreenProps<AuthStackParamList, 'SignUp'>;
@@ -26,7 +27,7 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
   // const [email, setEmail] = useState(''); // 이메일 입력 칸 제거로 인해 주석 처리
 
   // 회원가입 버튼을 눌렀을 때 실행될 함수입니다.
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     // 1. 입력 값 유효성 검사 (비어있는 필드가 있는지 확인)
     // 이메일 입력 칸 제거로 인해 !email 조건 제거
     if (!userId || !password || !passwordConfirm || !nickname) {
@@ -39,20 +40,21 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
       Alert.alert('입력 오류', '비밀번호가 일치하지 않습니다.');
       return; // 함수 실행 중단
     }
-
+    console.log('이제 fetch 작동');
     // TODO: 실제 백엔드 API에 회원가입 요청을 보내야 합니다.
-    // const response = await fetch('https://your-backend.com/api/signup', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ user_id: userId, user_pw: password, nickname: nickname }), // 백엔드 요구사항에 맞춰 필드명 변경
-    // });
-    // const data = await response.json();
-    // if (response.ok) {
-    //   Alert.alert('회원가입 완료', '로그인 화면으로 이동합니다.');
-    //   navigation.navigate('Login');
-    // } else {
-    //   Alert.alert('회원가입 실패', data.message);
-    // }
+     const response = await fetch(`${LOCAL_SERVER}/user/join`, {
+       method: 'POST',
+       headers: { 'Content-Type': 'application/json' },
+       body: JSON.stringify({ user_id: userId, user_pw: password, nickname: nickname }), // 백엔드 요구사항에 맞춰 필드명 변경
+     });
+     console.log(response);
+     const data = await response.json();
+     if (response.ok) {
+       Alert.alert('회원가입 완료', '로그인 화면으로 이동합니다.');
+       navigation.navigate('Login');
+     } else {
+       Alert.alert('회원가입 실패', data.message);
+     }
 
     // 3. 모든 검사를 통과하면 완료 메시지를 띄웁니다.
     Alert.alert('회원가입 완료!');
