@@ -20,7 +20,7 @@ public class MainController {
     public ResponseEntity<?> mainPage(HttpSession session) {
         String nickname = (String)session.getAttribute("nickname");
         if (nickname == null) {
-            return ResponseEntity.status(401).body("{\"error\": \"로그인이 필요합니다\"}");
+            return ResponseEntity.status(401).body("로그인이 필요합니다.");
         }
         try {
             User user = userService.selectByNickname(nickname);

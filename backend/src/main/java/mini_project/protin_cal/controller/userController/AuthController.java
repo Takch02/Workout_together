@@ -19,4 +19,11 @@ public class AuthController {
             return ResponseEntity.status(200).body("로그인 성공!");
         }
     }
+    @GetMapping("/")
+    public ResponseEntity<?> home() {
+        return ResponseEntity.status(200).body("접속이 잘 됨");
+    }
+
+
+
 }

@@ -9,8 +9,14 @@ version = '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion.set(JavaLanguageVersion.of(17))  // 중복 제거하고 한 번만 선언
     }
+    withJavadocJar()
+    withSourcesJar()
+}
+
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
 }
 
 configurations {
