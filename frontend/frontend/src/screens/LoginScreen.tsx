@@ -10,7 +10,6 @@ type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
 const LoginScreen: React.FC<Props> = ({ navigation }) => {
   const [userId, setUserId] = useState(''); // email 대신 userId로 변경
   const [password, setPassword] = useState('');
-
   const handleLogin = async () => {
       console.log('백엔드로 요청 보냄')
     // TODO: 실제 백엔드 API에 로그인 요청을 보내야 합니다.
