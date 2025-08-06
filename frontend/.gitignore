@@ -1,0 +1,32 @@
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Jest
+/coverage/
+
+# Android
+/android/app/build/
+/android/build/
+/android/.gradle/
+/android/app/.cxx/
+/android/app/src/main/assets/index.android.bundle
+*.keystore
+debug.keystore
+
+# iOS
+/ios/build/
+/ios/Pods/
+*.xcworkspace
+
+# OSX
+.DS_Store
+
+# VSCode
+.vscode/
+
+# IDEA
+.idea/
+*.iml
